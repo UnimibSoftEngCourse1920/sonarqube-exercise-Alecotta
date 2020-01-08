@@ -316,7 +316,7 @@ public class BlockJUnit4ClassRunner extends ParentRunner<FrameworkMethod> {
         Statement statement = methodInvoker(method, test);
         statement = possiblyExpectingExceptions(method, test, statement);
         statement = withPotentialTimeout(method, test, statement);
-        statement = withBefores(method, test, statement);
+        statement = withBefores(test, statement);
         statement = withAfters(method, test, statement);
         statement = withRules(method, test, statement);
         statement = withInterruptIsolation(statement);
@@ -370,7 +370,7 @@ public class BlockJUnit4ClassRunner extends ParentRunner<FrameworkMethod> {
      * methods on this class and superclasses before running {@code next}; if
      * any throws an Exception, stop execution and pass the exception on.
      */
-    protected Statement withBefores(FrameworkMethod method, Object target,
+    protected Statement withBefores(Object target,
             Statement statement) {
         List<FrameworkMethod> befores = getTestClass().getAnnotatedMethods(
                 Before.class);
